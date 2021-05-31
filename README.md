@@ -11,14 +11,15 @@ Just a simple demonstrator on having a cdk based microservice app that has lambd
 ## Things added from base cdk init
 
 - `npm run deploy` added this script to `package.json`
-- typescript linter with eslint
+- typescript linter and formatter with eslint and prettier
 - lambda types with `@types/aws-lambda`
 
 ## Lambdas
 
 - demonstrates using a pipfile for dependency installation at build time
   - [cdk python lambda docs](https://docs.aws.amazon.com/cdk/api/latest/docs/aws-lambda-python-readme.html)
-
+- demonstrates using a package.jsoon for dependency installation at build time
+  - [cdk nodejs lambda docs](https://docs.aws.amazon.com/cdk/api/latest/docs/aws-lambda-nodejs-readme.html)
 
 ## Useful commands
 
