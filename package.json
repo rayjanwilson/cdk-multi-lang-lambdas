@@ -35,6 +35,7 @@
     "@aws-cdk/aws-apigatewayv2": "^1.106.1",
     "@aws-cdk/aws-apigatewayv2-integrations": "^1.106.1",
     "@aws-cdk/aws-lambda": "^1.106.1",
+    "@aws-cdk/aws-lambda-nodejs": "^1.106.1",
     "@aws-cdk/aws-lambda-python": "^1.106.1",
     "@aws-cdk/aws-logs": "^1.106.1",
     "@aws-cdk/core": "1.106.1",
