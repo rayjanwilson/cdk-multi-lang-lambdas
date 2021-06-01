@@ -2,6 +2,8 @@ import * as cdk from '@aws-cdk/core';
 import * as lambda from '@aws-cdk/aws-lambda';
 import { PythonFunction } from '@aws-cdk/aws-lambda-python';
 import { NodejsFunction } from '@aws-cdk/aws-lambda-nodejs';
+import { HttpApi, HttpMethod } from '@aws-cdk/aws-apigatewayv2';
+import { LambdaProxyIntegration } from '@aws-cdk/aws-apigatewayv2-integrations';
 
 export class CdkMultiLangLambdasStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
@@ -13,11 +15,34 @@ export class CdkMultiLangLambdasStack extends cdk.Stack {
       handler: 'handler', // optional, defaults to 'handler'
       runtime: lambda.Runtime.PYTHON_3_8, // optional, defaults to lambda.Runtime.PYTHON_3_7
     }); // more details at https://docs.aws.amazon.com/cdk/api/latest/docs/aws-lambda-python-readme.html
+    const pyFuncIntegration = new LambdaProxyIntegration({
+      handler: python_lambda,
+    });
 
     const node_lambda = new NodejsFunction(this, 'NodeLambda', {
       runtime: lambda.Runtime.NODEJS_14_X,
       entry: 'lambda-fns/nodejs/index.ts',
       handler: 'handler',
     }); // more details at https://docs.aws.amazon.com/cdk/api/latest/docs/aws-lambda-nodejs-readme.html
+    const nodeFuncIntegration = new LambdaProxyIntegration({
+      handler: node_lambda,
+    });
+
+    const httpApi = new HttpApi(this, 'HttpApi');
+    // more details at https://docs.aws.amazon.com/cdk/api/latest/docs/aws-apigatewayv2-readme.html
+    httpApi.addRoutes({
+      path: '/python',
+      methods: [HttpMethod.GET],
+      integration: pyFuncIntegration,
+    });
+    httpApi.addRoutes({
+      path: '/nodejs',
+      methods: [HttpMethod.GET],
+      integration: nodeFuncIntegration,
+    });
+
+    new cdk.CfnOutput(this, 'HTTP API Url', {
+      value: httpApi.url ?? 'Something went wrong with the deploy',
+    });
   }
 }
