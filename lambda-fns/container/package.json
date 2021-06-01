@@ -1,0 +1,16 @@
+{
+  "name": "container",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@elastic/ecs-pino-format": "^1.1.2",
+    "@types/pino": "^6.3.8",
+    "pino": "^6.11.3"
+  }
+}
