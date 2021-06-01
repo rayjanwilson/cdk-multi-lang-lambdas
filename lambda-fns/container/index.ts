@@ -11,7 +11,7 @@ export const handler = (event: APIGatewayProxyEventV2, context: Context): Promis
 
   return new Promise((resolve, reject) => {
     if (event) {
-      resolve({ statusCode: 200, body: 'hello from node' });
+      resolve({ statusCode: 200, body: 'hello from containerized node' });
     } else {
       reject({ statusCode: 500, body: 'something went wrong' });
     }

@@ -40,6 +40,14 @@ export class CdkMultiLangLambdasStack extends cdk.Stack {
       handler: node_lambda,
     });
 
+    const container_lambda = new lambda.DockerImageFunction(this, 'ContainerLambda', {
+      code: lambda.DockerImageCode.fromImageAsset('lambda-fns/container'),
+    }); // more details at https://docs.aws.amazon.com/cdk/api/latest/docs/aws-lambda-readme.html#docker-images
+
+    const containerFuncIntegration = new LambdaProxyIntegration({
+      handler: container_lambda,
+    });
+
     const httpApi = new HttpApi(this, 'HttpApi');
     // more details at https://docs.aws.amazon.com/cdk/api/latest/docs/aws-apigatewayv2-readme.html
     httpApi.addRoutes({
@@ -51,6 +59,11 @@ export class CdkMultiLangLambdasStack extends cdk.Stack {
       path: '/nodejs',
       methods: [HttpMethod.GET],
       integration: nodeFuncIntegration,
+    });
+    httpApi.addRoutes({
+      path: '/container',
+      methods: [HttpMethod.GET],
+      integration: containerFuncIntegration,
     });
 
     new cdk.CfnOutput(this, 'HTTP API Url', {
