@@ -16,10 +16,13 @@ Just a simple demonstrator on having a cdk based microservice app that has lambd
 
 ## Lambdas
 
-- demonstrates using a pipfile for dependency installation at build time
-  - [cdk python lambda docs](https://docs.aws.amazon.com/cdk/api/latest/docs/aws-lambda-python-readme.html)
-- demonstrates using a package.jsoon for dependency installation at build time
-  - [cdk nodejs lambda docs](https://docs.aws.amazon.com/cdk/api/latest/docs/aws-lambda-nodejs-readme.html)
+- demonstrates
+  - using a pipfile for dependency installation at build time
+    - [cdk python lambda docs](https://docs.aws.amazon.com/cdk/api/latest/docs/aws-lambda-python-readme.html)
+  - using a package.jsoon for dependency installation at build time
+    - [cdk nodejs lambda docs](https://docs.aws.amazon.com/cdk/api/latest/docs/aws-lambda-nodejs-readme.html)
+  - using [structured logging](https://www.structlog.org/en/stable/why.html)
+    - [ecs format](https://www.elastic.co/blog/introducing-the-elastic-common-schema)
 
 ## Useful commands
 
