@@ -5,14 +5,14 @@ const ecsFormat = require('@elastic/ecs-pino-format');
 // eslint-disable-next-line @typescript-eslint/no-unsafe-call
 const log = pino(ecsFormat());
 
-const handler = (event: APIGatewayProxyEventV2, context: Context): APIGatewayProxyResultV2 => {
+export const handler = (event: APIGatewayProxyEventV2, context: Context): APIGatewayProxyResultV2 => {
   log.info(JSON.stringify(event));
   log.info(JSON.stringify(context));
 
   return {
     statusCode: 200,
-    body: JSON.stringify({ event }),
+    body: 'helo from node',
   };
 };
 
-export { handler };
+// export { handler };
